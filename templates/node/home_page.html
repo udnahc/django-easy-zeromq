@@ -1,0 +1,56 @@
+<html>
+<head>
+  <title>Django-Easy Zeromq</title>
+</head>
+<body>
+<div class='container-fluid'>
+  <div class="sidebar" style="height:940px;">
+    <div class="well" style="padding: 14px 19px;">
+      <button class="btn center" onClick="create_note();">Create a socket</button>
+      <br/><br/>
+      <button class="btn center" onClick="create_note();">Start everything</button>
+      <br/><br/>
+      <button class="btn center" onClick="create_note();">Start the process</button>
+      <br/><br/>
+      <button class="btn center" onClick="create_note();">Stop the process</button>
+      <br/><br/>
+      <button class="btn center" onClick="create_note();">Stop all the sockets</button>
+    </div>
+    <br/>
+    <div class="well">
+      <h5>Current process report</h5>
+    </div>
+    <br/>
+    <div class="well">
+      <h5>Log of the controller</h5>
+    </div>
+    <br/>
+    <div class="well">
+      <h5>Load presets</h5>
+    </div>
+  </div>
+  <div class="content" style="height:940px;background-color: #DCEAF4;">
+    <div id="work-area" style="padding-left: 10px; padding-top:10 px;">
+      <h5>This is the work area</h5>
+      <div id="actual-work-area"></div>
+    </div>
+  </div>
+</div>
+
+    <div id="popupContact">
+
+    </div>
+    <div id="backgroundPopup"></div>
+
+
+</body>
+<link rel="stylesheet" type="text/css" href="/site_media/css/bootstrap-1.1.1.min.css">
+<link rel="stylesheet" type="text/css" href="/site_media/css/popup/popup.css">
+<link rel="stylesheet" type="text/css" href="/site_media/js/jquery/jquery-ui-1.8.17.custom/css/sunny/jquery-ui-1.8.17.custom.css">
+
+
+<script type="text/javascript"  src="/site_media/js/jquery/jquery-ui-1.8.17.custom/js/jquery-1.7.1.min.js"></script>
+<script type="text/javascript"  src="/site_media/js/jquery/jquery-ui-1.8.17.custom/js/jquery-ui-1.8.17.custom.min.js"></script>
+<script type="text/javascript"  src="/site_media/js/sockets.js"></script>
+<script type="text/javascript"  src="/site_media/js/popup/popup.js"></script>
+</html>

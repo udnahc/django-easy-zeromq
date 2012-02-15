@@ -1,0 +1,43 @@
+<form id='create_socket_form'>
+<div id='create_socket'>
+  <fieldset>
+    <legend>Create Node</legend>
+    <div class='clearfix'>
+      <label for='xlInput'>Socket Name</label>
+      <div class='input'>
+        {{ create_socket_form.socket_name }}
+      </div>
+    </div>
+    <div class='clearfix'>
+      <label for='xlInput'>Socket Port</label>
+      <div class='input'>
+        {{ create_socket_form.port }}
+      </div>
+    </div> 
+    <div class='clearfix'>
+      <label for='xlInput'>Socket Type</label>
+      <div class='input'>
+        {{ create_socket_form.socket_type }}
+      </div>
+    </div>
+    <div class='clearfix'>
+      <label for='xlInput'>Socket Description</label>
+      <div class='input'>
+        {{ create_socket_form.description }}
+      </div>
+    </div>
+    <div class='clearfix'>
+      <label for='xlInput'>Python Package</label>
+      <div class='input'>
+        {{ create_socket_form.python_package }}
+      </div>
+    </div>
+
+    <div class='row'>
+      <div class='span3 columns offset3'>
+        <input type='button' value='Create Socket' onclick="create_socket();">
+      </div>
+    </div>
+  </fieldset>
+</div>
+</form>
