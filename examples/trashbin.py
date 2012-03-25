@@ -1,28 +1,22 @@
 import zmq
+from zmq_utils.utils import Worker
 
-# Subscribe to Subscriber for commands from controller
-context = zmq.Context()
-subscriber_socket = context.socket(zmq.SUB)
-subscriber_socket.connect("tcp://127.0.0.1:5000")
-subscriber_socket.setsockopt(zmq.SUBSCRIBE, "")
-
-
-# This is a trashbin so it will accept something from the ventilator
-pull_socket = context.socket(zmq.PULL)
-pull_socket.bind("tcp://127.0.0.1:6000")
-
-poller = zmq.Poller()
-poller.register(subscriber_socket, zmq.POLLIN)
-poller.register(pull_socket, zmq.POLLIN)
+class Trashbin(Worker):
+    def ventilate(self):
+        print "Trashbin: This is a Trashbin so no ventilation "
     
-while True:
-    socks = dict(poller.poll())
-    if socks.get(subscriber_socket) == zmq.POLLIN:
-        subscriber_message = subscriber_socket.recv()
-        print 'Subscriber Message:', subscriber_message
-        if subscriber_message == 'STOP':
-            break
+    def collect(self, work_message):
+        print "Trashbin: Received something from Ventilator ", work_message
+    
+    def stop_worker(self):
+        print "Trashbin: Have to do something to stop this worker "
 
-    if socks.get(pull_socket) == zmq.POLLIN:
-        pull_socket_message = pull_socket.recv()
-        print 'Pull Socket Message:', pull_socket_message
+if __name__ == '__main__':
+    controller_is_listening_at = "tcp://127.0.0.1:5010"
+    controller_is_publishing_to = "tcp://127.0.0.1:5000"
+    
+    bind_to  = "tcp://127.0.0.1:6000"
+
+    trashbin = Trashbin(controller_is_publishing_to, controller_is_listening_at, bind_to, [], zmq.PULL)
+    print 'Runnning this trashbin '
+    trashbin.listen()
