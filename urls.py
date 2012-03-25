@@ -24,4 +24,8 @@ urlpatterns += patterns('node.views',
     (r'^$', 'view_home_page', {'home_page_template': 'node/home_page.html'}, 'home_page'),
     (r'^create/$', 'view_create_node', {'create_node_template': 'node/create_node.html'}, 'create_node'),
     (r'^save/$', 'view_save_node', {}, 'save_node'),
+    (r'^start_everything/$', 'view_start_everything', {},'start_everything'),
+    (r'^stop_everything/$', 'view_stop_everything', {},'stop_everything'),
+    (r'^start_processes/$', 'view_start_processes', {},'start_processes'),
+    (r'^stop_processes/$', 'view_stop_processes', {},'stop_processes'),
 )
