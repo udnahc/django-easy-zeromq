@@ -40,3 +40,35 @@ function close_message() {
     $('.alert-message').remove()
 };
 
+
+function start_everything() {
+    $.ajax({
+        type: "GET",
+        url:'/start_everything/',
+     });
+};
+
+function stop_everything() {
+    $.ajax({
+        type: "GET",
+        url:'/stop_everything/',
+     });
+};
+
+function start_processes() {
+    $.ajax({
+        type: "GET",
+        url:'/start_processes/',
+    });
+};
+
+function stop_processes() {
+    $.ajax({
+        type: "GET",
+        url:'/stop_processes/',
+    });
+};
+
+function run_project() {
+    alert("Run another project will come later boss ");
+};

@@ -6,33 +6,52 @@
 <div class='container-fluid'>
   <div class="sidebar" style="height:940px;">
     <div class="well" style="padding: 14px 19px;">
-      <button class="btn center" onClick="create_note();">Create a socket</button>
+      <button class="btn center" onClick="run_project();">Run project</button>
       <br/><br/>
-      <button class="btn center" onClick="create_note();">Start everything</button>
+      <button class="btn center" onClick="start_everything();">Start everything</button>
       <br/><br/>
-      <button class="btn center" onClick="create_note();">Start the process</button>
+      <button class="btn center" onClick="start_processes();">Start the process</button>
       <br/><br/>
-      <button class="btn center" onClick="create_note();">Stop the process</button>
+      <button class="btn center" onClick="stop_processes();">Stop the process</button>
       <br/><br/>
-      <button class="btn center" onClick="create_note();">Stop all the sockets</button>
-    </div>
-    <br/>
-    <div class="well">
-      <h5>Current process report</h5>
+      <button class="btn center" onClick="stop_everything();">Stop all the sockets</button>
     </div>
     <br/>
     <div class="well">
       <h5>Log of the controller</h5>
     </div>
     <br/>
-    <div class="well">
-      <h5>Load presets</h5>
-    </div>
   </div>
   <div class="content" style="height:940px;background-color: #DCEAF4;">
     <div id="work-area" style="padding-left: 10px; padding-top:10 px;">
-      <h5>This is the work area</h5>
-      <div id="actual-work-area"></div>
+      <h3> {{ project.name }} </h3>
+      <div id="actual-work-area" class="row">
+	{% for node in nodes_list %}
+	<div class="span6" id='{{node_name}}'>
+	  <div class="well">
+	    <h5>
+	      {{ node.name }} 	    
+	      {% if node.binds_to != 'None' %}
+	           @ {{ node.binds_to }} 	    
+	      {% endif %}
+	    </h5>
+	    {% if node.connects_to != 'None' %}
+	         <h5>talking to : {{ node.connects_to }}</h5>
+	         <br/>
+	    {% endif %}	    
+	    {{ node.description }}
+	    <br/>
+	    {{ node.socket_type }}
+	    <br/>
+	    {{ node.worker_file }}
+	    <br/><br/>
+	    <p>
+	      <a class="btn btn-primary btn-large">View Log</a>
+            </p>
+	  </div>
+	</div>	
+	{% endfor %}
+      </div>      
     </div>
   </div>
 </div>
