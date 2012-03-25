@@ -8,6 +8,11 @@ from node.forms import CreateSocketForm
 import simplejson
 
 def view_home_page(request, home_page_template):
+    print "Home Page: Setting default project id as 1"
+    project_id = 1
+    from node.models import Project, Node
+    project = Project.objects.get(id=project_id)
+    nodes_list = Node.objects.filter(project_id=project_id)
     return render_to_response(home_page_template, locals())
 
 def view_create_node(request, create_node_template):
@@ -28,3 +33,35 @@ def view_save_node(request):
             return HttpResponse(simplejson.dumps(values))
         else:
             return HttpResponse(False)
+
+def view_start_everything(request):
+    ''' The web ui has sent a start signal '''
+    from zmq_utils.client import Client
+    client = Client()
+    client.send_start_signal()    
+    return HttpResponse(True)
+
+def view_stop_everything(request):
+    ''' The web ui has sent a stop signal '''
+    from zmq_utils.client import Client
+    client = Client()
+    client.send_stop_signal()    
+    print "Sent stop signal "
+    return HttpResponse(True)
+
+def view_start_processes(request):
+    ''' The web ui has sent a start process signal'''
+    from zmq_utils.client import Client
+    client = Client()
+    client.send_start_process_signal()    
+    print "Sent start process signal "
+    return HttpResponse(True)
+
+def view_stop_processes(request):
+    ''' The web ui has sent a stop all processes signal '''
+    from zmq_utils.client import Client
+    client = Client()
+    client.send_stop_process_signal()    
+    print "Sent stop process signal "
+    return HttpResponse(True)
+
