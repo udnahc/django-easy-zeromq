@@ -6,6 +6,7 @@ from django.shortcuts import render_to_response
 from node.forms import CreateSocketForm
 
 import simplejson
+from zmq_utils.client import Client
 
 def view_home_page(request, home_page_template):
     print "Home Page: Setting default project id as 1"
@@ -36,7 +37,6 @@ def view_save_node(request):
 
 def view_start_everything(request):
     ''' The web ui has sent a start signal '''
-    from zmq_utils.client import Client
     client = Client()
     client.send_start_signal()    
     return HttpResponse(True)
@@ -51,7 +51,6 @@ def view_stop_everything(request):
 
 def view_start_processes(request):
     ''' The web ui has sent a start process signal'''
-    from zmq_utils.client import Client
     client = Client()
     client.send_start_process_signal()    
     print "Sent start process signal "
@@ -59,7 +58,6 @@ def view_start_processes(request):
 
 def view_stop_processes(request):
     ''' The web ui has sent a stop all processes signal '''
-    from zmq_utils.client import Client
     client = Client()
     client.send_stop_process_signal()    
     print "Sent stop process signal "

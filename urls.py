@@ -1,9 +1,7 @@
 from django.conf.urls.defaults import patterns, include, url
-import os
-ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
-
-
+from django.conf import settings
 from django.contrib import admin
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -16,9 +14,8 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': os.path.join(ROOT_PATH,'site_media/')}),
+    (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
 )
-
 
 urlpatterns += patterns('node.views',
     (r'^$', 'view_home_page', {'home_page_template': 'node/home_page.html'}, 'home_page'),
